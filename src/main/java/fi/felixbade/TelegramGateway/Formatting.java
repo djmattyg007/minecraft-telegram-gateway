@@ -54,9 +54,13 @@ public class Formatting {
 
         } else if (message.location != null) {
             // TODO fix formatting
-        	msg.addExtra(new TextComponent(String.format("§3[Location: lat: %s, long: %s]§r",
-        			message.location.latitude,
-        			message.location.longitude)));
+            msg.addExtra(new TextComponent(
+                String.format(
+                    "§3[Location: lat: %s, long: %s]§r",
+                    message.location.latitude,
+                    message.location.longitude
+                )
+            ));
 
         } else if (message.new_chat_members != null) {
             msg.addExtra(new TextComponent("added "));

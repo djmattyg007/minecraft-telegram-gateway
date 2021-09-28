@@ -52,15 +52,18 @@ public class Main extends JavaPlugin implements Listener {
                     if (chatId == this.telegramChatId) {
                         TextComponent formatted = Formatting.formatTelegramMessageToMinecraft(message);
                         Bukkit.getServer().spigot().broadcast(formatted);
-
                     } else {
                         logger.warning(String.format("Message from an unknown chat: %d", chatId));
 
                         // Avoid infinite loops
-                        if (message.from.is_bot) return;
+                        if (message.from.is_bot) {
+                            return;
+                        }
 
-                        String info = String.format("Set `telegram-chat-id` to `%d` in `plugins/TelegramGateway/config.yml` " +
-                                "if you want to integrate this chat with the Minecraft chat", chatId);
+                        String info = String.format(
+                            "Set `telegram-chat-id` to `%d` in `plugins/TelegramGateway/config.yml` " +
+                            "if you want to integrate this chat with the Minecraft chat", chatId
+                        );
                         telegram.sendMarkdownMessage(chatId, info);
                     }
                 }

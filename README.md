@@ -9,6 +9,12 @@ A Bukkit/Spigot plugin that integrates Minecraft chat with a Telegram group.
 - Run `mvn package` in the root of this project
 - Maven creates a `target` folder and puts the compiled `TelegramGateway.jar` there.
 
+Alternatively, run this:
+
+```
+docker run --rm -ti -v "${PWD}:/data" -w /data -u "$(id -u):$(id -g)" maven:3.8-jdk-8 mvn package
+```
+
 ### Initial plugin setup
 - Copy `TelegramGateway.jar` to the `plugins` folder in your Bukkit/Spigot server
 - Run the server (or reload the plugins) and it will create `plugins/TelegramGateway/config.yml`.
@@ -35,7 +41,7 @@ Most of my philosophy boils down to this: everything should be **transparent or 
 
 The idea started from the motivation to make playing Minecraft less lonely and not playing Minecraft less fearing-of-missing-out. So, ...
 - **Maximum integration.** It’s not enough that the Minecraft and Telegram chats are linked, it should feel like *they are the same chat*. Of course, Minecraft and Telegram support a bit different message types, so the integration can’t be perfect. However, both ends should do their best to keep their people in the loop. Minecraft is just one client for Telegram and vice versa.
-- **Respect conventions.** The Telegram side should feel as ”telegrammy” as possible and Minecraft as ”minecrafty” as possible. Furthermore, the bridge should try to bring the ”telegramminess” to Minecraft and the ”minecraftiness” to Telegram. That might sound like repetition but actually each combination brings it’s own challenges.
+- **Respect conventions.** The Telegram side should feel as ”telegrammy” as possible and Minecraft as ”minecrafty” as possible. Furthermore, the bridge should try to bring the ”telegramminess” to Minecraft and the ”minecraftiness” to Telegram. That might sound like repetition but actually each combination brings its own challenges.
 - **Ease of administration.** The gateway should use standard practises where applicable. The plugin should also be robust, even over cool features. This also means assisted setup.
 - **Zero configuration for participation.** You are just playing Minecraft, why would you care about Telegram? Never underestimate the power of laziness. Client-side mods are out of question.
 - **Simplicity is king.** Simplicity over flexibility.
