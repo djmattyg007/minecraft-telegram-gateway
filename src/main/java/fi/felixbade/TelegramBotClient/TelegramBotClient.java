@@ -55,8 +55,11 @@ public class TelegramBotClient {
     }
 
     public TelegramUpdate[] getNextUpdates() {
-        String url = String.format("https://api.telegram.org/bot%s/getUpdates?offset=%d",
-        this.token, lastUpdateId+1);
+        String url = String.format(
+            "https://api.telegram.org/bot%s/getUpdates?offset=%d",
+            this.token,
+            lastUpdateId + 1
+        );
 
         JsonObject updates = null;
         try {
