@@ -57,27 +57,29 @@ public class Main extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
             TelegramUpdate[] updates = telegram.getNextUpdates();
             for (TelegramUpdate update : updates) {
-                if (update.message != null) {
-                    TelegramMessage message = update.message;
+                if (update.message == null) {
+                    continue;
+                }
 
-                    long chatId = message.chat.id;
-                    if (chatId == this.telegramChatId) {
-                        TextComponent formatted = Formatting.formatTelegramMessageToMinecraft(message);
-                        Bukkit.getServer().spigot().broadcast(formatted);
-                    } else {
-                        logger.warning(String.format("Message from an unknown chat: %d", chatId));
+                TelegramMessage message = update.message;
 
-                        // Avoid infinite loops
-                        if (message.from.is_bot) {
-                            return;
-                        }
+                long chatId = message.chat.id;
+                if (chatId == this.telegramChatId) {
+                    TextComponent formatted = Formatting.formatTelegramMessageToMinecraft(message);
+                    Bukkit.getServer().spigot().broadcast(formatted);
+                } else {
+                    logger.warning(String.format("Message from an unknown chat: %d", chatId));
 
-                        String info = String.format(
-                            "Set `telegram-chat-id` to `%d` in `plugins/TelegramGateway/config.yml` " +
-                            "if you want to integrate this chat with the Minecraft chat", chatId
-                        );
-                        telegram.sendMarkdownMessage(chatId, info);
+                    // Avoid infinite loops
+                    if (message.from.is_bot) {
+                        return;
                     }
+
+                    String info = String.format(
+                        "Set `telegram-chat-id` to `%d` in `plugins/TelegramGateway/config.yml` " +
+                        "if you want to integrate this chat with the Minecraft chat", chatId
+                    );
+                    telegram.sendMarkdownMessage(chatId, info);
                 }
             }
         }, 10, 10);
