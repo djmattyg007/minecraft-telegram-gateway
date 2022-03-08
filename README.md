@@ -5,18 +5,18 @@ A Bukkit/Spigot plugin that integrates Minecraft chat with a Telegram group.
 
 ### Building
 - Install Maven
-- Install JDK for java 8 (e.g. OpenJDK 8)
+- Install JDK for java 17 (e.g. OpenJDK 17)
 - Run `mvn package` in the root of this project
 - Maven creates a `target` folder and puts the compiled `TelegramGateway.jar` there.
 
 Alternatively, run this:
 
 ```
-docker run --rm -ti -v "${PWD}:/data" -w /data -u "$(id -u):$(id -g)" maven:3.8-jdk-8 mvn package
+docker run --rm -ti -v "${PWD}:/data" -w /data -u "$(id -u):$(id -g)" maven:3.8-openjdk-17 mvn package
 ```
 
 ### Initial plugin setup
-- Copy `TelegramGateway.jar` to the `plugins` folder in your Bukkit/Spigot server
+- Copy `TelegramGateway.jar` to the `plugins` folder in your Bukkit/Spigot/Paper server
 - Run the server (or reload the plugins) and it will create `plugins/TelegramGateway/config.yml`.
 - You will see a warning in the console that Telegram access token is not configured.
 
