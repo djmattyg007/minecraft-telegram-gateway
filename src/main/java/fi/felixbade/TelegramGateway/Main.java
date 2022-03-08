@@ -97,15 +97,7 @@ public class Main extends JavaPlugin implements Listener {
         telegram.sendMessage(telegramChatId, messageToTelegram);
     }
 
-    @EventHandler
-    public void onBroadcastMessage(BroadcastMessageEvent event) {
-        if (event.isCancelled()) {
-            return;
-        }
-
-        String messageToTelegram = String.format("<server> %s", event.getMessage());
-        telegram.sendMessage(telegramChatId, messageToTelegram);
-    }
+    // TODO: Add a "server command" event handler. Parse '/say ' and 'say ' commands.
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
